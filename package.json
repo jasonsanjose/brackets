@@ -40,6 +40,6 @@
     },
     "scripts"               :
     {
-        "test"              : "jasmine-node test/headless"
+        "test"              : "grunt jasmine"
     }
 }
