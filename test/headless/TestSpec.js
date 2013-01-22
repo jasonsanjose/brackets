@@ -3,6 +3,6 @@ describe('jasmine-node-flat', function(){
         expect(1+2).toEqual(3);
     });
     it('should fail', function(){
-        expect(1+2).not.toEqual(12);
+        expect(1+2).not.toEqual(3);
     });
 });
