@@ -139,6 +139,34 @@ module.exports = function (grunt) {
                 jshintrc: '.jshintrc'
             }
         },
+        less: {
+            development: {
+                files: {
+                    "dist/css/brackets.css": "src/styles/brackets.less"
+                }
+            },
+            production: {
+                options: {
+                    yuicompress: true
+                },
+                files: {
+                    "dist/css/brackets.min.css": "src/styles/brackets.less"
+                }
+            }
+        },
+        requirejs: {
+            compile: {
+                options: {
+                    baseUrl: "src/",
+                    name: "brackets",
+                    paths: {
+                        "text": "thirdparty/text/text",
+                        "i18n": "thirdparty/i18n/i18n"
+                    },
+                    out: "dist/js/brackets.min.js"
+                }
+            }
+        },
         shell: {
             repo: grunt.option("shell-repo") || "../brackets-shell",
             mac: "<%= shell.repo %>/installer/mac/staging/<%= pkg.name %>.app",
@@ -152,6 +180,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jasmine-node');
+    grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
     
     // task: install
     grunt.registerTask('install', ['write-config']);
